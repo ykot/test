@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+ <head>
+  <title>Self Camera</title>
+<style type="text/css">
+<!--
+
+#video {
+  background: #222;
+  margin: 0 0 20px 0;
+  --width: 40%;
+  width: var(--width);
+  height: calc(var(--width) * 0.75);
+}
+#videofilter  {
+  background: #222;
+  margin: 0 0 20px 0;
+  --width:40%;
+  width: var(--width);
+  height: calc(var(--width) * 0.75);
+  filter: brightness(1.5);
+}
+-->
+
+  </style>
+
+ </head>
+ <body>
+   <video id="video" autoplay="1" ></video>
+   <video id="videofilter" autoplay="1" ></video>
+
+   <script type="text/javascript">
+    var video1 = document.getElementById("video"); 
+    var video2 = document.getElementById("videofilter"); 
+      var constrains = { video: true, audio: true }; // 映像・音声を取得するかの設定
+      navigator.mediaDevices
+        .getUserMedia(constrains)
+        .then(function(stream) {
+          video1.srcObject = stream; // streamはユーザーのカメラとマイクの情報で、これをvideoの入力ソースにする
+          video1.play();
+          video2.srcObject = stream;
+          video2.play();
+        })
+        .catch(function(err) {
+          console.log("An error occured! " + err);
+        });
+   </script>
+ </body>
+</html>
