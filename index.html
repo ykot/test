@@ -26,17 +26,17 @@
 
  </head>
  <body>
-   <video id="video" playsinline autoplay loop ></video>
-   <video id="videofilter" playsinline autoplay loop ></video>
+   <video id="video" playsinline autoplay muted loop ></video>
+   <video id="videofilter" playsinline autoplay muted loop ></video>
 
    <script type="text/javascript">
     var video1 = document.getElementById("video"); 
     var video2 = document.getElementById("videofilter"); 
-      var constrains = { video: true, audio: true }; // 映像・音声を取得するかの設定
+      var constrains = { video: true, audio:  false }; 
       navigator.mediaDevices
         .getUserMedia(constrains)
         .then(function(stream) {
-          video1.srcObject = stream; // streamはユーザーのカメラとマイクの情報で、これをvideoの入力ソースにする
+          video1.srcObject = stream; 
           video1.play();
           video2.srcObject = stream;
           video2.play();
